@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>إدارة الشحنات</h2>
+<form method="post" class="form grid4">
+  <input name="id" placeholder="المعرف (اختياري)">
+  <input name="origin" placeholder="المنشأ" value="الطائف">
+  <input name="destination" placeholder="الوجهة" value="الرياض">
+  <input name="temp" placeholder="الحرارة" type="number" step="0.1" value="10">
+  <input name="status" placeholder="الحالة" value="في الطريق" class="col2">
+  <button class="btn col2" type="submit">إنشاء شحنة جديدة</button>
+</form>
+<div class="tablewrap">
+<table class="table">
+  <thead><tr><th>المعرف</th><th>المنشأ</th><th>الوجهة</th><th>الحرارة</th><th>الحالة</th></tr></thead>
+  <tbody>
+    {% for r in shipments %}
+    <tr>
+      <td>{{ r.id }}</td><td>{{ r.origin }}</td><td>{{ r.destination }}</td><td>{{ r.temp }}°C</td>
+      <td>
+        {% if 'تم' in r.status %}<span class="badge success">{{ r.status }}</span>
+        {% else %}<span class="badge warn">{{ r.status }}</span>{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>تتبّع الشحنة</h2>
+<form method="post" class="form rowh">
+  <input name="code" value="{{ code }}" placeholder="أدخل رقم التتبّع">
+  <button class="btn" type="submit">تتبّع</button>
+</form>
+<div class="muted">{{ status }}</div>
+<div class="panel mt">
+  {% include "svg_map.html" %}
+</div>
+{% endblock %}

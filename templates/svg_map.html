@@ -1,0 +1,18 @@
+<div class="mapbox">
+  <svg viewBox="0 0 600 260">
+    <!-- Cities -->
+    <circle cx="140" cy="160" r="8" fill="{{ brand_dark_blue }}"></circle>
+    <text x="120" y="150" font-size="12" fill="{{ brand_dark_blue }}">الطائف</text>
+
+    <circle cx="260" cy="180" r="8" fill="{{ brand_dark_pink }}"></circle>
+    <text x="240" y="170" font-size="12" fill="{{ brand_dark_pink }}">جدة</text>
+
+    <circle cx="480" cy="120" r="8" fill="{{ brand_dark_blue }}"></circle>
+    <text x="460" y="110" font-size="12" fill="{{ brand_dark_blue }}">الرياض</text>
+
+    <!-- Path -->
+    <polyline points="140,160 260,180 480,120" fill="none" stroke="{{ brand_dark_pink }}" stroke-width="4" stroke-linecap="round" stroke-dasharray="6 6"/>
+    <!-- moving dot -->
+    <circle cx="260" cy="180" r="6" fill="{{ brand_light_pink }}" stroke="{{ brand_dark_pink }}" stroke-width="2"></circle>
+  </svg>
+</div>

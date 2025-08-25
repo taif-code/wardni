@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>إدارة المستخدمين</h2>
+<form method="post" class="form rowh">
+  <input name="name" placeholder="Name">
+  <input name="role" placeholder="Role" value="User">
+  <input name="email" placeholder="Email">
+  <button class="btn" type="submit">إضافة</button>
+</form>
+<table class="table mt">
+  <thead><tr><th>ID</th><th>Name</th><th>Role</th><th>Email</th></tr></thead>
+  <tbody>
+  {% for u in users %}
+    <tr><td>{{ u.id }}</td><td>{{ u.name }}</td><td>{{ u.role }}</td><td>{{ u.email }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

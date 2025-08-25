@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>الموردون</h2>
+<div class="cards3">
+  {% for s in suppliers %}
+  <div class="panel">
+    <div class="row between">
+      <div>
+        <strong>{{ s.name }}</strong>
+        <div class="muted">{{ s.location }}</div>
+        <div class="stars">★★★★★ <small>{{ s.rating }}</small></div>
+      </div>
+      <form method="post" action="{{ url_for('shipments_page') }}">
+        <input type="hidden" name="origin" value="{{ s.name }}">
+        <input type="hidden" name="destination" value="الرياض">
+        <button class="btn small">إنشاء شحنة</button>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
