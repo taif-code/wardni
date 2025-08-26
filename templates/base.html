@@ -1,52 +1,66 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="{{ lang_code }}" dir="{{ dir }}">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ app_name }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ T.app_name }}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <script defer src="{{ url_for('static', filename='app.js') }}"></script>
   </head>
   <body>
     <header class="topbar">
-      <a class="brand" href="{{ url_for('index') }}"><span class="logo">🌹</span> {{ app_name }}</a>
-      <nav class="nav">
-        <a href="{{ url_for('dashboard') }}">لوحة التحكم</a>
-        <a href="{{ url_for('shipments_page') }}">الشحنات</a>
-        <a href="{{ url_for('suppliers_page') }}">الموردون</a>
-        <a href="{{ url_for('track') }}">تتبّع شحنة</a>
-        <a href="{{ url_for('users_page') }}">المستخدمون</a>
+      <a class="brand" href="{{ url_for('index') }}" aria-label="{{ T.app_name }}">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" style="height:60px; border-radius:36px;" />
+      </a>
+
+      <nav class="nav" aria-label="main">
+        <a id="dashboard" href="{{ url_for('dashboard') }}">{{ T.dashboard }}</a>
+        <a id="shipments" href="{{ url_for('shipments_page') }}">{{ T.shipments }}</a>
+        <a id="suppliers" href="{{ url_for('suppliers_page') }}">{{ T.suppliers }}</a>
+        <a id="track" href="{{ url_for('track') }}">{{ T.track }}</a>
+        <a id="users" href="{{ url_for('users_page') }}">{{ T.users }}</a>
       </nav>
-      <a class="btn dark" href="{{ url_for('login') }}">تسجيل الدخول</a>
+
+      <div style="display:flex; gap:8px; align-items:center;">
+        <a id="login" class="btn dark" href="{{ url_for('login') }}">{{ T.login }}</a>
+        <a class="btn outline" href="{{ url_for('toggle_lang') }}">🌐 {{ 'EN' if lang_code=='ar' else 'AR' }}</a>
+      </div>
     </header>
+
     <main class="container">
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
           <div class="flashwrap">
             {% for cat, msg in messages %}
-              <div class="flash {{cat}}">{{ msg }}</div>
+              <div class="flash {{ cat }}">{{ msg }}</div>
             {% endfor %}
           </div>
         {% endif %}
       {% endwith %}
+
       {% block content %}{% endblock %}
     </main>
-    <footer class="footer">© {{ app_name }} - {{ 2025 }}</footer>
 
-    <!-- Floating Chatbot -->
-    <button id="chatbot-toggle" class="chatbtn">💬 وردني يساعدك؟</button>
-    <div id="chatbot" class="chatbox hidden">
-      <div class="chathead">🤖 {{ app_name }} <span id="chat-close">✕</span></div>
+    <footer class="footer">©  .صُنع بكل بحب من قلب الطائف   - {{ 2025 }} </footer>
+
+    <!-- Chatbot -->
+    <button id="chatbot-toggle" class="chatbtn">💬 {{ T.app_name }}?</button>
+    <div id="chatbot" class="chatbox hidden" role="dialog" aria-label="chat">
+      <div class="chathead">
+        🤖 {{ T.app_name }} <span id="chat-close" role="button" aria-label="close">✕</span>
+      </div>
       <div class="chatbody" id="chat-messages">
-        <div class="bot">مرحبًا! تقدر تكتب رقم الشحنة وأعطيك حالتها.</div>
-        <div class="bot">أو تسأل عن الموردين المتاحين.</div>
+        <div class="bot">{{ T.botMsg1 }}</div>
+        <div class="bot">{{ T.botMsg2 }}</div>
       </div>
       <div class="chatinput">
-        <input id="chat-input" placeholder="T-10234">
-        <button id="chat-send">➤</button>
+        <input id="chat-input" placeholder="T-10234" aria-label="message" />
+        <button id="chat-send" aria-label="send">➤</button>
       </div>
     </div>
+
     {% block extra_scripts %}{% endblock %}
   </body>
 </html>

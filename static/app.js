@@ -39,3 +39,63 @@
   send.onclick = sendMsg;
   input.addEventListener('keydown', e=>{ if(e.key==='Enter') sendMsg(); });
 })();
+document.addEventListener("DOMContentLoaded", function () {
+  const langBtn = document.getElementById("lang-toggle");
+  if (langBtn) {
+    langBtn.addEventListener("click", () => {
+      const html = document.documentElement;
+      if (html.getAttribute("lang") === "ar") {
+        // غيّر إلى الإنجليزية
+        html.setAttribute("lang", "en");
+        html.setAttribute("dir", "ltr");
+        langBtn.textContent = "🌐 AR";
+
+        // ترجمة سريعة (واجهة فقط)
+        translateUI("en");
+      } else {
+        // غيّر إلى العربية
+        html.setAttribute("lang", "ar");
+        html.setAttribute("dir", "rtl");
+        langBtn.textContent = "🌐 EN";
+
+        // ترجمة سريعة (واجهة فقط)
+        translateUI("ar");
+      }
+    });
+  }
+});
+
+function translateUI(lang) {
+  const dict = {
+    ar: {
+      "dashboard": "لوحة التحكم",
+      "shipments": "الشحنات",
+      "suppliers": "الموردون",
+      "track": "تتبّع شحنة",
+      "users": "المستخدمون",
+      "login": "تسجيل الدخول",
+      "manageShipments": "إدارة الشحنات",
+      "trackShipment": "تتبّع الشحنة",
+    },
+    en: {
+      "dashboard": "Dashboard",
+      "shipments": "Shipments",
+      "suppliers": "Suppliers",
+      "track": "Track",
+      "users": "Users",
+      "login": "Login",
+      "manageShipments": "Manage Shipments",
+      "trackShipment": "Track Shipment",
+    }
+  };
+
+  const t = dict[lang];
+  if (!t) return;
+
+  // عدّل النصوص حسب id
+  const ids = Object.keys(t);
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = t[id];
+  });
+}

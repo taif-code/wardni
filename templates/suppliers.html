@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>الموردون</h2>
+<h2>{{ T.suppliersTitle }}</h2>
 <div class="cards3">
   {% for s in suppliers %}
   <div class="panel">
@@ -13,7 +13,7 @@
       <form method="post" action="{{ url_for('shipments_page') }}">
         <input type="hidden" name="origin" value="{{ s.name }}">
         <input type="hidden" name="destination" value="الرياض">
-        <button class="btn small">إنشاء شحنة</button>
+        <button class="btn small">{{ T.createFromSupplier }}</button>
       </form>
     </div>
   </div>

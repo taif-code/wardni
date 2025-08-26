@@ -2,12 +2,12 @@
 {% block content %}
 <section class="hero">
   <div class="hero-text">
-    <span class="badge">🌹 {{ app_name }}</span>
-    <h1>منصة خفيفة لإدارة سلاسل الإمداد للورد الطائفي</h1>
-    <p>واجهة بسيطة تشبه ERP/SAP لكن أسهل — تتبّع الشحنات، راقب الحرارة، وتواصل مع المورّدين بسهولة.</p>
+    <span class="badge">🌸 {{ T.app_name }}</span>
+    <h1>{{ T.heroTitle }}</h1>
+    <p>{{ T.heroDesc }}</p>
     <div class="actions">
-      <a class="btn" href="{{ url_for('login') }}">ابدأ</a>
-      <a class="btn outline" href="{{ url_for('track') }}">تتبّع شحنة</a>
+      <a class="btn" href="{{ url_for('login') }}">{{ T.start }}</a>
+      <a class="btn outline" href="{{ url_for('track') }}">{{ T.trackShipment }}</a>
     </div>
   </div>
   <div class="hero-map">

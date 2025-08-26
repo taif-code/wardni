@@ -1,5 +1,5 @@
-:root{ --dp:#7A2048; --lp:#F0D0DB; --db:#0E2A47; }
-*{box-sizing:border-box} body{font-family:Cairo,system-ui; margin:0; background:#f7f7fb; color:#0f172a}
+:root{ --dp:#7A2048; --lp:#ffffff; --db:#0E2A47; }
+*{box-sizing:border-box} body{font-family:Cairo,system-ui; margin:0; background:#F7F3ED; color:#333c52}
 .container{max-width:1100px;margin:24px auto;padding:0 16px}
 .topbar{position:sticky;top:0;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #e6eaf2;background:#fff;z-index:10}
 .brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--db);font-weight:700}
@@ -54,3 +54,15 @@
 .chatbody .me{background:var(--dp);color:#fff;padding:8px 10px;border-radius:12px;margin:6px 0;display:inline-block}
 .chatinput{display:flex;gap:6px;border-top:1px solid #e6eaf2;padding:8px}
 .chatinput input{flex:1}
+.panel h3 { margin-top: 0; color: var(--db); }
+.table small.muted { color: #64748b; }
+/* أسهم اتجاهية حسب لغة الصفحة */
+.dir-arrow::after {
+    content: "→"; /* افتراضي (للإنجليزية / LTR) */
+    display: inline-block;
+    margin: 0 4px;
+  }
+  html[dir="rtl"] .dir-arrow::after {
+    content: "←"; /* للعربية / RTL */
+  }
+  

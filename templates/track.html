@@ -1,11 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>تتبّع الشحنة</h2>
+<h2>{{ T.trackTitle }}</h2>
+
 <form method="post" class="form rowh">
-  <input name="code" value="{{ code }}" placeholder="أدخل رقم التتبّع">
-  <button class="btn" type="submit">تتبّع</button>
+  <input name="code" value="{{ code }}" placeholder="{{ T.enterTracking }}">
+  <button class="btn" type="submit">{{ T.trackBtn }}</button>
 </form>
+
 <div class="muted">{{ status }}</div>
+
+{% if legs and legs|length > 0 %}
+  <div class="panel mt">
+    <h3>{{ T.legsTitle }}</h3>
+    <ol style="margin:0; padding-inline-start:18px;">
+      {% for lg in legs %}
+        <li style="margin:6px 0;">
+          <strong>{{ lg.from|trans }}</strong><span class="dir-arrow"></span><strong>{{ lg.to|trans }}</strong>
+          <span class="badge" style="margin-inline-start:6px">{{ lg.status|trans }}</span>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+{% endif %}
+
 <div class="panel mt">
   {% include "svg_map.html" %}
 </div>
